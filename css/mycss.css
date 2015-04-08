@@ -1,0 +1,35 @@
+/* 
+    Document   : mycss
+    Created on : Mar 12, 2015, 5:53:50 PM
+    Author     : HP
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body{
+    width: 100%;
+    min-height:700px; 
+    pedding:0px;
+    background-color: windowframe;
+    background-image: url("bgg.jpg");
+}
+
+.box
+{
+   position: absolute;
+   left:20%;
+   padding: 20px;
+   margin-top:60px;
+   background-color: aquamarine;
+   color: blue;
+   border: 1px activecaption groove;
+}
+
+#outer >li
+{
+    list-style:decimal;
+}

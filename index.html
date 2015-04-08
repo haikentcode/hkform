@@ -1,0 +1,124 @@
+<!--
+haikent.al@facebook.com
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- haikent -->
+        <script src="./js/jquery.js"></script>
+        <script src='posturl.js'></script>
+        <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+        <link rel="stylesheet" href="css/mycss.css" media="screen" type="text/css" />
+        <script src="js/modernizr.js"></script>
+    </head>
+    <body>
+        
+       <div class="box">  
+        <div id="hkf"></div>
+        <div id="reback"></div>
+        <hr>
+          <section>
+           <button id="js-trigger-overlay" type="button" class="submit">Submit</button>
+         </section>
+       </div> 
+        
+        
+        <script type="text/javascript">
+           
+         function getselectbox(id)
+         {
+   
+           var sbox='<select  id="a'+id+'" >';
+             for(k=0;k<=25;k++)
+                 {
+                     sbox+='<option>'+k+'</option>';
+                 }
+             sbox+='</select>';
+             
+             return sbox;
+         }
+           
+        function boot()
+        {
+            
+            
+            var s=["Name","Designation","Workshop/Conferences/Short term courses/ Training programs conducted","Workshop/Conferences/Short term courses/ Training programs attended","Publications- International Journals with ISSN/ISBN","Publications- National Journals with ISSN/ISBN","Publications- International Conferences with ISSN/ISBN","Publications- National Conferences with ISSN/ISBN","Projects/Civil works/Research grant received","Consultancy","Distinguished visitors / Expert lectures in the department","Faculty achievements","Students Activities/ achievements","Placements","Other activities"];
+             
+             
+          
+          
+         
+        hk='<ul id="outer">';
+        
+          hk+='<li class="c1"><h6>'+s[0]+'</h6><input class="name"></li>';
+          hk+='<li class="c2"><h6>'+s[1]+'</h6><input class="des"></li>';  
+             
+            for(i=0;i<13;i++)
+                {
+                    var k=i+3;
+                    hk+='<li class="c'+k+'"><h6>'+s[i+2]+'</h6>'+getselectbox(i)+'<div id="a'+i+'b"></div></li>';
+                }
+                 
+                
+        hk+='</ul>';
+       
+              
+              
+              document.getElementById("hkf").innerHTML=hk;
+            
+        }
+           boot();
+           
+        $("select").change(function(){
+          
+       
+            var val=$(this).val();
+            var cid=$(this).attr('id')+"b";           
+            var hk='<ul>';
+            
+            for(i=0;i<val;i++)
+                {
+                    hk+='<li id="gudan"><input required="required" class="'+cid+'"><div></div></li>';
+                }
+              hk+='</ul>';
+              
+            $("#"+cid).html(hk);
+            
+          
+           
+        });   
+        
+        $("button.submit").click(function(){
+            var hk="";
+            
+            hk+="."+$(".name").val()+"#";
+            hk+="."+$(".des").val()+"#";
+            
+          for(i=0;i<13;i++){  
+              hk+=".";
+           $("input.a"+i+"b").each(function()
+             {
+               
+                var data=$(this).val(); 
+                hk+="-"+data;      
+             });
+             hk+='#';
+          }  
+          
+           posturl("./savefile.php","haikent=gudan&data="+hk,"reback");
+           
+           
+            
+        });
+        
+        </script>
+        
+        
+        
+        
+    </body>
+    
+    
+</html>
